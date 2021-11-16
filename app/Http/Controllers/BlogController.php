@@ -15,8 +15,31 @@ class BlogController extends Controller
 
     public function index()
     {
-        $posts = Post::with('user:id,name')->with('categories:slug,name')->get();
+        $posts = Post::activePost()
+            ->with('user:id,name')
+            ->with('categories:slug,name')->get();
 
         return Inertia::render('Blog/Index', ['posts' => $posts]);
+    }
+
+    public function show($slug)
+    {
+        $post = Post::activePost()
+                ->with('user:id,name')
+                ->with('categories:slug,name')
+                ->where('slug', $slug)
+                ->firstOrFail();
+
+        // return [
+        //     'post' => $post,
+        //     'nextPost' => $post->next_post,
+        //     'prevPost' => $post->prev_post,
+        // ];
+
+        return Inertia::render('Blog/Show', [
+            'post' => $post,
+            'nextPost' => $post->next_post,
+            'prevPost' => $post->prev_post,
+        ]);
     }
 }

@@ -2,12 +2,30 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     use HasFactory;
+
+    public const DRAFT = 0;
+    public const ACTIVE = 1;
+    public const INACTIVE = 2;
+
+    public const POST = 'Post';
+    public const PAGE = 'Page';
+
+    public const STATUSES = [
+        self::DRAFT => 'draft',
+        self::ACTIVE => 'active',
+        self::INACTIVE => 'inactive'
+    ];
+
+    public $casts = [
+        'published_at' => 'datetime:d, M Y H:i',
+    ];
 
     public function user()
     {
@@ -27,5 +45,32 @@ class Post extends Model
     public function tags()
     {
         return $this->morphToMany('App\Models\Tag', 'taggable');
+    }
+
+    public function scopeActivePost($query)
+    {
+        return $query->where('status', self::ACTIVE)
+                     ->where('post_type', self::POST)
+                     ->where('published_at', '<=', Carbon::now());
+    }
+
+    public function getNextPostAttribute()
+    {
+        $nextPost = self::activePost()
+                ->where('published_at', '>', $this->published_at)
+                ->orderBy('published_at', 'asc')
+                ->first();
+
+        return $nextPost;
+    }
+
+    public function getPrevPostAttribute()
+    {
+        $prevPost = self::activePost()
+                ->where('published_at', '<', $this->published_at)
+                ->orderBy('published_at', 'desc')
+                ->first();
+
+        return $prevPost;
     }
 }
