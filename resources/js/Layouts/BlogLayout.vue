@@ -70,7 +70,8 @@
         <!-- Text Header -->
         <header class="w-full container mx-auto">
             <div class="flex flex-col items-center py-12">
-                <a
+                <inertia-link
+                    :href="`/`"
                     class="
                         font-bold
                         text-gray-800
@@ -78,10 +79,9 @@
                         hover:text-gray-700
                         text-5xl
                     "
-                    href="#"
                 >
                     Minimal Blog
-                </a>
+                </inertia-link>
                 <p class="text-lg text-gray-600">Lorem Ipsum Dolor Sit Amet</p>
             </div>
         </header>
@@ -192,19 +192,42 @@
                         Get to know us
                     </a>
                 </div>
+                <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+                    <p class="text-xl font-semibold pb-5">Meta</p>
+                    <ul class="list-disc pl-4" v-if="!$page.props.user">
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    </ul>
+                    <ul class="list-disc pl-4" v-if="$page.props.user">
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li>
+                            <inertia-link href="/logout" method="post"
+                                >Logout</inertia-link
+                            >
+                        </li>
+                    </ul>
+                </div>
             </aside>
         </div>
 
         <footer class="w-full border-t bg-white pb-12">
-        <div class="w-full container mx-auto flex flex-col items-center">
-            <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
-                <a href="#" class="uppercase px-3">About Us</a>
-                <a href="#" class="uppercase px-3">Privacy Policy</a>
-                <a href="#" class="uppercase px-3">Terms & Conditions</a>
-                <a href="#" class="uppercase px-3">Contact Us</a>
+            <div class="w-full container mx-auto flex flex-col items-center">
+                <div
+                    class="
+                        flex flex-col
+                        md:flex-row
+                        text-center
+                        md:text-left md:justify-between
+                        py-6
+                    "
+                >
+                    <a href="#" class="uppercase px-3">About Us</a>
+                    <a href="#" class="uppercase px-3">Privacy Policy</a>
+                    <a href="#" class="uppercase px-3">Terms & Conditions</a>
+                    <a href="#" class="uppercase px-3">Contact Us</a>
+                </div>
+                <div class="uppercase pb-6">&copy; myblog.com</div>
             </div>
-            <div class="uppercase pb-6">&copy; myblog.com</div>
-        </div>
-    </footer>
+        </footer>
     </div>
 </template>

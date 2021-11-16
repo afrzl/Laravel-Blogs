@@ -1234,6 +1234,9 @@ select {
 .mb-10 {
 	margin-bottom: 2.5rem;
 }
+.mb-8 {
+	margin-bottom: 2rem;
+}
 .block {
 	display: block;
 }
@@ -1242,6 +1245,9 @@ select {
 }
 .inline-flex {
 	display: inline-flex;
+}
+.table {
+	display: table;
 }
 .grid {
 	display: grid;
@@ -1663,6 +1669,10 @@ select {
 	padding-top: 2.5rem;
 	padding-bottom: 2.5rem;
 }
+.px-8 {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
 .pt-6 {
 	padding-top: 1.5rem;
 }
@@ -1725,6 +1735,9 @@ select {
 }
 .pl-4 {
 	padding-left: 1rem;
+}
+.pb-20 {
+	padding-bottom: 5rem;
 }
 .text-left {
 	text-align: left;
