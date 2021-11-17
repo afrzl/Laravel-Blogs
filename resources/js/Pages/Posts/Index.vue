@@ -24,7 +24,7 @@
                                 Published At
                             </th>
                         </tr>
-                        <tr v-for="post in posts" :key="post.id">
+                        <tr v-for="post in posts.data" :key="post.id">
                             <td class="border px-8 py-4">{{ post.title }}</td>
                             <td class="border px-8 py-4">
                                 {{ post.user.name }}
@@ -34,18 +34,23 @@
                             </td>
                         </tr>
                     </table>
+                    <div class="mt-8">
+                        <pagination :links="posts.links"></pagination>
+                    </div>
                 </div>
             </div>
         </div>
     </app-layout>
 </template>
 <script>
+import Pagination from "../Shared/Pagination.vue";
 import AppLayout from "./../../Layouts/AppLayout.vue";
 
 export default {
     props: ["posts"],
     components: {
         AppLayout,
+        Pagination,
     },
 };
 </script>

@@ -1516,6 +1516,9 @@ select {
 .border-r {
 	border-right-width: 1px;
 }
+.border-l {
+	border-left-width: 1px;
+}
 .border-gray-300 {
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
@@ -1718,6 +1721,9 @@ select {
 .pb-2 {
 	padding-bottom: 0.5rem;
 }
+.pl-4 {
+	padding-left: 1rem;
+}
 .pb-12 {
 	padding-bottom: 3rem;
 }
@@ -1732,9 +1738,6 @@ select {
 }
 .pl-1 {
 	padding-left: 0.25rem;
-}
-.pl-4 {
-	padding-left: 1rem;
 }
 .pb-20 {
 	padding-bottom: 5rem;
